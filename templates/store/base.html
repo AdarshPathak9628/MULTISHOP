@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ✅ Dynamic page title - each page sets its own title -->
+    <title>{% block title %}MultiShop{% endblock %}</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <!-- ✅ Extra CSS block - each page can add its own styles -->
+    {% block extra_css %}{% endblock %}
+  </head>
+  <body>
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container">
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold fs-4" href="{% url 'store:index' %}">
+          <i class="fas fa-store me-2"></i>MultiShop
+        </a>
+
+        <!-- Mobile toggle -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- Left links -->
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'store:index' %}">
+                <i class="fas fa-home me-1"></i>Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'store:shop' %}">
+                <i class="fas fa-shopping-bag me-1"></i>Shop
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'store:contact' %}">
+                <i class="fas fa-envelope me-1"></i>Contact
+              </a>
+            </li>
+          </ul>
+
+          <!-- Right links -->
+          <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+            <!-- Cart with item count -->
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'store:cart' %}">
+                <i class="fas fa-shopping-cart me-1"></i>Cart
+                <span class="badge bg-danger">
+                  {{ request.user.cart.count }}
+                </span>
+              </a>
+            </li>
+            <!-- User dropdown -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                data-bs-toggle="dropdown"
+              >
+                <i class="fas fa-user me-1"></i>
+                {{ user.username }}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item" href="{% url 'store:profile' %}">
+                    <i class="fas fa-user-circle me-2"></i>Profile
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a
+                    class="dropdown-item text-danger"
+                    href="{% url 'store:logout' %}"
+                  >
+                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                  </a>
+                </li>
+              </ul>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'store:login' %}">
+                <i class="fas fa-sign-in-alt me-1"></i>Login
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'store:signup' %}">
+                <i class="fas fa-user-plus me-1"></i>Signup
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========== FLASH MESSAGES ========== -->
+    {% if messages %}
+    <div class="container mt-3">
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+        {{ message }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+        ></button>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- ========== PAGE CONTENT ========== -->
+    <!-- ✅ Each page fills this block with its own content -->
+    {% block content %} {% endblock %}
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-dark text-white py-4 mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h5><i class="fas fa-store me-2"></i>MultiShop</h5>
+            <p class="text-muted">Your one stop shop for everything!</p>
+          </div>
+          <div class="col-md-4">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a
+                  href="{% url 'store:index' %}"
+                  class="text-muted text-decoration-none"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="{% url 'store:shop' %}"
+                  class="text-muted text-decoration-none"
+                  >Shop</a
+                >
+              </li>
+              <li>
+                <a
+                  href="{% url 'store:contact' %}"
+                  class="text-muted text-decoration-none"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Follow Us</h5>
+            <a href="#" class="text-muted me-3 fs-5">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#" class="text-muted me-3 fs-5">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-muted me-3 fs-5">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+        <hr class="border-secondary" />
+        <p class="text-center text-muted mb-0">
+          © 2026 MultiShop by Adarsh Pathak. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ✅ Extra JS block - each page can add its own scripts -->
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

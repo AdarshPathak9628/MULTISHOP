@@ -1,0 +1,150 @@
+{% extends 'store/base.html' %} {% load static %} {% block title %}Sign Up -
+MultiShop{% endblock %} {% block content %}
+<section class="py-5 bg-light" style="min-height: 80vh">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card border-0 shadow-lg rounded-4">
+          <div class="card-body p-5">
+            <!-- Header -->
+            <div class="text-center mb-4">
+              <i class="fas fa-user-plus fa-3x text-warning mb-3"></i>
+              <h3 class="fw-bold">Create Account</h3>
+              <p class="text-muted">Join MultiShop today!</p>
+            </div>
+
+            <!-- Signup Form -->
+            <form method="POST">
+              {% csrf_token %}
+
+              <!-- Name Row -->
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label fw-semibold">
+                    <i class="fas fa-user me-1 text-warning"></i>
+                    First Name
+                  </label>
+                  <input
+                    type="text"
+                    name="first_name"
+                    class="form-control rounded-3"
+                    placeholder="First name"
+                    required
+                  />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label fw-semibold"> Last Name </label>
+                  <input
+                    type="text"
+                    name="last_name"
+                    class="form-control rounded-3"
+                    placeholder="Last name"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!-- Username -->
+              <div class="mb-3">
+                <label class="form-label fw-semibold">
+                  <i class="fas fa-at me-1 text-warning"></i>
+                  Username
+                </label>
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control rounded-3"
+                  placeholder="Choose a username"
+                  required
+                />
+              </div>
+
+              <!-- Email -->
+              <div class="mb-3">
+                <label class="form-label fw-semibold">
+                  <i class="fas fa-envelope me-1 text-warning"></i>
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control rounded-3"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+
+              <!-- Phone -->
+              <div class="mb-3">
+                <label class="form-label fw-semibold">
+                  <i class="fas fa-phone me-1 text-warning"></i>
+                  Phone Number
+                </label>
+                <input
+                  type="text"
+                  name="phone"
+                  class="form-control rounded-3"
+                  placeholder="Enter phone number"
+                />
+              </div>
+
+              <!-- Password -->
+              <div class="mb-3">
+                <label class="form-label fw-semibold">
+                  <i class="fas fa-lock me-1 text-warning"></i>
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password1"
+                  class="form-control rounded-3"
+                  placeholder="Create password"
+                  required
+                />
+              </div>
+
+              <!-- Confirm Password -->
+              <div class="mb-4">
+                <label class="form-label fw-semibold">
+                  <i class="fas fa-lock me-1 text-warning"></i>
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  name="password2"
+                  class="form-control rounded-3"
+                  placeholder="Confirm password"
+                  required
+                />
+              </div>
+
+              <!-- Submit -->
+              <button
+                type="submit"
+                class="btn btn-warning btn-lg w-100 fw-bold rounded-3"
+              >
+                <i class="fas fa-user-plus me-2"></i>Create Account
+              </button>
+            </form>
+
+            <hr class="my-4" />
+
+            <!-- Login Link -->
+            <div class="text-center">
+              <p class="text-muted mb-0">
+                Already have an account?
+                <a
+                  href="{% url 'store:login' %}"
+                  class="text-warning fw-bold text-decoration-none"
+                >
+                  Login
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

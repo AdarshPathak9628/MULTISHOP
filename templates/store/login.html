@@ -1,0 +1,80 @@
+{% extends 'store/base.html' %} {% load static %} {% block title %}Login -
+MultiShop{% endblock %} {% block content %}
+<section class="py-5 bg-light" style="min-height: 80vh">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card border-0 shadow-lg rounded-4">
+          <div class="card-body p-5">
+            <!-- Header -->
+            <div class="text-center mb-4">
+              <i class="fas fa-store fa-3x text-warning mb-3"></i>
+              <h3 class="fw-bold">Welcome Back!</h3>
+              <p class="text-muted">Login to your MultiShop account</p>
+            </div>
+
+            <!-- Login Form -->
+            <form method="POST">
+              {% csrf_token %}
+
+              <!-- Username -->
+              <div class="mb-3">
+                <label class="form-label fw-semibold">
+                  <i class="fas fa-user me-1 text-warning"></i>
+                  Username
+                </label>
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control form-control-lg rounded-3"
+                  placeholder="Enter your username"
+                  required
+                />
+              </div>
+
+              <!-- Password -->
+              <div class="mb-4">
+                <label class="form-label fw-semibold">
+                  <i class="fas fa-lock me-1 text-warning"></i>
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control form-control-lg rounded-3"
+                  placeholder="Enter your password"
+                  required
+                />
+              </div>
+
+              <!-- Submit -->
+              <button
+                type="submit"
+                class="btn btn-warning btn-lg w-100 fw-bold rounded-3"
+              >
+                <i class="fas fa-sign-in-alt me-2"></i>Login
+              </button>
+            </form>
+
+            <!-- Divider -->
+            <hr class="my-4" />
+
+            <!-- Signup Link -->
+            <div class="text-center">
+              <p class="text-muted mb-0">
+                Don't have an account?
+                <a
+                  href="{% url 'store:signup' %}"
+                  class="text-warning fw-bold text-decoration-none"
+                >
+                  Sign Up
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
