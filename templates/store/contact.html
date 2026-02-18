@@ -1,0 +1,149 @@
+{% extends 'store/base.html' %} {% load static %} {% block title %}Contact -
+MultiShop{% endblock %} {% block content %}
+<section class="py-5">
+  <div class="container">
+    <h2 class="fw-bold mb-4">Contact <span class="text-warning">Us</span></h2>
+
+    <div class="row">
+      <!-- Contact Form -->
+      <div class="col-md-7 mb-4">
+        <div class="card border-0 shadow-sm rounded-4 p-4">
+          <h5 class="fw-bold mb-4">
+            <i class="fas fa-envelope me-2 text-warning"></i>
+            Send us a Message
+          </h5>
+
+          <form method="POST">
+            {% csrf_token %}
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold"> Your Name </label>
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control rounded-3"
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold"> Email </label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control rounded-3"
+                  placeholder="Your email"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold"> Subject </label>
+              <input
+                type="text"
+                name="subject"
+                class="form-control rounded-3"
+                placeholder="Message subject"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold"> Message </label>
+              <textarea
+                name="message"
+                class="form-control rounded-3"
+                rows="5"
+                placeholder="Write your message..."
+                required
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-warning btn-lg w-100 fw-bold rounded-3"
+            >
+              <i class="fas fa-paper-plane me-2"></i>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-md-5">
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+          <h5 class="fw-bold mb-4">
+            <i class="fas fa-info-circle me-2 text-warning"></i>
+            Contact Information
+          </h5>
+
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-warning rounded-circle p-3 me-3">
+              <i class="fas fa-map-marker-alt text-dark"></i>
+            </div>
+            <div>
+              <small class="text-muted">Address</small>
+              <p class="mb-0 fw-semibold">India</p>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-warning rounded-circle p-3 me-3">
+              <i class="fas fa-phone text-dark"></i>
+            </div>
+            <div>
+              <small class="text-muted">Phone</small>
+              <p class="mb-0 fw-semibold">+91 XXXXXXXXXX</p>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-warning rounded-circle p-3 me-3">
+              <i class="fas fa-envelope text-dark"></i>
+            </div>
+            <div>
+              <small class="text-muted">Email</small>
+              <p class="mb-0 fw-semibold">adarshpathak9628@gmail.com</p>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center">
+            <div class="bg-warning rounded-circle p-3 me-3">
+              <i class="fab fa-github text-dark"></i>
+            </div>
+            <div>
+              <small class="text-muted">GitHub</small>
+              <p class="mb-0 fw-semibold">AdarshPathak9628</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="card border-0 shadow-sm rounded-4 p-4">
+          <h5 class="fw-bold mb-3">Follow Us</h5>
+          <div class="d-flex gap-3">
+            <a href="#" class="btn btn-outline-primary rounded-3">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#" class="btn btn-outline-danger rounded-3">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="btn btn-outline-info rounded-3">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="https://github.com/AdarshPathak9628"
+              class="btn btn-outline-dark rounded-3"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -300,3 +300,29 @@ def checkout(request):
         'total': total,
     }
     return render(request, 'store/checkout.html', context)
+
+
+def contact(request):
+    if request.method == 'POST':
+        messages.success(
+            request,
+            'Message sent successfully! We will contact you soon.'
+        )
+        return redirect('store:contact')
+    return render(request, 'store/contact.html')
+
+
+@login_required
+def profile(request):
+    from .models import Order
+    orders = Order.objects.filter(
+        user=request.user
+    ).order_by('-created_at')[:5]
+
+    cart_count = Cart.objects.filter(user=request.user).count()
+
+    context = {
+        'orders': orders,
+        'cart_count': cart_count,
+    }
+    return render(request, 'store/profile.html', context)
